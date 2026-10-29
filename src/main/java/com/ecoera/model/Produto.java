@@ -1,14 +1,16 @@
-package com.ecoera.model.entity;
+package com.ecoera.model;
 
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "produtos")
 public class Produto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String nome;
     private String descricao;
     private Integer precoPontos; // quantos pontos custa pra trocar

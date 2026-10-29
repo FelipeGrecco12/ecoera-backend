@@ -2,6 +2,7 @@ package com.ecoera.service;
 
 import com.ecoera.model.TipoMaterial;
 import com.ecoera.repository.TipoMaterialRepository;
+import com.ecoera.exception.RecursoNaoEncontradoException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class TipoMaterialService {
 
     public TipoMaterial buscarPorId(Long id) {
         return repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Tipo de material não encontrado: " + id));
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Tipo de material não encontrado: " + id));
     }
 
     public TipoMaterial salvar(TipoMaterial material) {
@@ -36,6 +37,7 @@ public class TipoMaterialService {
     }
 
     public void deletar(Long id) {
+        buscarPorId(id);
         repository.deleteById(id);
     }
 }

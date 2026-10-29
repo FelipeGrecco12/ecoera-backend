@@ -38,6 +38,11 @@ public class TrocaController {
         return service.salvar(troca);
     }
 
+    @PutMapping("/{id}")
+    public Troca atualizar(@PathVariable Long id, @RequestBody Troca troca) {
+        return service.atualizar(id, troca);
+    }
+
     @PutMapping("/{id}/concluir")
     public Troca concluir(@PathVariable Long id) {
         return service.concluir(id);

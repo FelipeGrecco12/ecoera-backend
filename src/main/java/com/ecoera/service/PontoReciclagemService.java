@@ -2,6 +2,7 @@ package com.ecoera.service;
 
 import com.ecoera.model.PontoReciclagem;
 import com.ecoera.repository.PontoReciclagemRepository;
+import com.ecoera.exception.RecursoNaoEncontradoException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class PontoReciclagemService {
 
     public PontoReciclagem buscarPorId(Long id) {
         return repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Ponto de reciclagem não encontrado: " + id));
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Ponto de reciclagem não encontrado: " + id));
     }
 
     public PontoReciclagem salvar(PontoReciclagem ponto) {
@@ -47,6 +48,7 @@ public class PontoReciclagemService {
     }
 
     public void deletar(Long id) {
+        buscarPorId(id);
         repository.deleteById(id);
     }
 

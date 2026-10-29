@@ -16,6 +16,10 @@ public class Troca {
 
     private String contato;
 
+    private String descricao;
+
+    private String itemDesejado;
+
     @ManyToOne
     @JoinColumn(name = "material_id")
     private TipoMaterial material;
@@ -38,6 +42,12 @@ public class Troca {
 
     public String getContato() { return contato; }
     public void setContato(String contato) { this.contato = contato; }
+
+    public String getDescricao() { return descricao; }
+    public void setDescricao(String descricao) { this.descricao = descricao; }
+
+    public String getItemDesejado() { return itemDesejado; }
+    public void setItemDesejado(String itemDesejado) { this.itemDesejado = itemDesejado; }
 
     public TipoMaterial getMaterial() { return material; }
     public void setMaterial(TipoMaterial material) { this.material = material; }

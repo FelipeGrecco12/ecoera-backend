@@ -2,6 +2,7 @@ package com.ecoera.service;
 
 import com.ecoera.model.Recompensa;
 import com.ecoera.repository.RecompensaRepository;
+import com.ecoera.exception.RecursoNaoEncontradoException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class RecompensaService {
 
     public Recompensa buscarPorId(Long id) {
         return repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Recompensa não encontrada: " + id));
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Recompensa não encontrada: " + id));
     }
 
     public Recompensa salvar(Recompensa recompensa) {
@@ -38,6 +39,7 @@ public class RecompensaService {
     }
 
     public void deletar(Long id) {
+        buscarPorId(id);
         repository.deleteById(id);
     }
 }
